@@ -26,11 +26,12 @@
 
         html {
             scroll-behavior: smooth;
+            font-size: 22px; /* Bigger base font size */
         }
 
         body {
             font-family: 'Georgia', 'Times New Roman', 'Segoe UI', serif;
-            line-height: 1.7;
+            line-height: 1.8;
             background: var(--bg);
             color: var(--text);
             -webkit-font-smoothing: antialiased;
@@ -81,30 +82,30 @@
             padding: 20px;
         }
         .hero-content .hero-icon {
-            font-size: 3.5rem;
+            font-size: 5rem;
             display: block;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             opacity: 0.9;
         }
         .hero-content h1 {
             font-family: 'Georgia', serif;
-            font-size: 4rem;
+            font-size: 5.5rem;
             font-weight: 700;
             letter-spacing: 3px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
         }
         .hero-content .hero-line {
             display: block;
-            width: 60px;
-            height: 2px;
+            width: 70px;
+            height: 3px;
             background: #fff;
-            margin: 16px auto;
+            margin: 18px auto;
             opacity: 0.7;
         }
         .hero-content .hero-subtitle {
-            font-size: 1rem;
-            letter-spacing: 5px;
+            font-size: 1.4rem;
+            letter-spacing: 6px;
             text-transform: uppercase;
             opacity: 0.8;
             margin-bottom: 30px;
@@ -113,34 +114,35 @@
         /* Scroll down indicator */
         .scroll-indicator {
             position: absolute;
-            bottom: 40px;
+            bottom: 100px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             color: #fff;
-            opacity: 0.7;
+            opacity: 0.9;
             cursor: pointer;
             text-decoration: none;
             animation: bounce 2s infinite;
         }
         .scroll-indicator span {
-            font-size: 0.7rem;
-            letter-spacing: 3px;
+            font-size: 1rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
+            font-weight: 600;
         }
         .scroll-indicator .arrow {
-            font-size: 1.5rem;
+            font-size: 2.2rem;
             line-height: 1;
         }
 
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
+            40% { transform: translateX(-50%) translateY(-12px); }
+            60% { transform: translateX(-50%) translateY(-6px); }
         }
 
         /* ══════════════════════════════════════ */
@@ -167,9 +169,9 @@
         }
 
         .container {
-            max-width: 880px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 40px 24px 60px;
+            padding: 50px 28px 70px;
             position: relative;
             z-index: 1;
         }
@@ -184,72 +186,72 @@
         /* ── Q&A HEADER ── */
         .qa-header {
             text-align: center;
-            margin-bottom: 56px;
-            padding: 36px 20px 20px;
+            margin-bottom: 60px;
+            padding: 40px 20px 24px;
         }
         .qa-header .icon {
-            font-size: 2.8rem;
+            font-size: 4rem;
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         .qa-header h2 {
-            font-size: 2rem;
+            font-size: 3rem;
             font-weight: 700;
             letter-spacing: 1px;
             color: #000;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             font-family: 'Georgia', serif;
         }
         .qa-header .line {
             display: block;
-            width: 50px;
-            height: 2px;
+            width: 60px;
+            height: 3px;
             background: #000;
-            margin: 14px auto 0;
+            margin: 16px auto 0;
         }
         .qa-header .subtitle {
-            font-size: 0.8rem;
-            letter-spacing: 4px;
+            font-size: 1.1rem;
+            letter-spacing: 5px;
             text-transform: uppercase;
             color: var(--text-light);
-            margin-top: 6px;
+            margin-top: 8px;
         }
 
         /* ── SECTION TITLES ── */
         .section-title {
             display: flex;
             align-items: center;
-            gap: 14px;
-            margin: 48px 0 20px;
+            gap: 16px;
+            margin: 56px 0 24px;
             font-family: 'Georgia', serif;
-            font-size: 1.2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: #000;
             letter-spacing: 0.5px;
         }
         .section-title .num {
-            width: 38px;
-            height: 38px;
-            border: 2px solid #000;
+            width: 50px;
+            height: 50px;
+            border: 3px solid #000;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
+            font-size: 1.2rem;
             font-weight: 700;
             flex-shrink: 0;
             background: #fff;
         }
         .section-title .line {
             flex: 1;
-            height: 1px;
+            height: 2px;
             background: #d4d4d4;
             margin-left: 8px;
         }
 
         /* ── TABLE ── */
         .table-wrapper {
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             border-radius: var(--radius-lg);
             overflow: hidden;
             box-shadow: var(--shadow);
@@ -261,19 +263,19 @@
         }
         thead th {
             background: #f5f5f5;
-            padding: 14px 20px;
+            padding: 18px 22px;
             text-align: left;
             font-weight: 700;
-            font-size: 0.75rem;
+            font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: var(--text-light);
-            border-bottom: 2px solid #000;
+            border-bottom: 3px solid #000;
         }
         tbody td {
-            padding: 12px 20px;
+            padding: 16px 22px;
             border-bottom: 1px solid #eee;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
         }
         tbody tr:hover {
             background: #fafafa;
@@ -287,22 +289,23 @@
         tbody td:last-child {
             font-weight: 600;
             color: #000;
+            font-size: 1.2rem;
         }
 
         /* ── CARDS ── */
         .cards-grid {
             display: grid;
-            gap: 12px;
+            gap: 16px;
         }
         .card {
             background: #fff;
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             border-radius: var(--radius);
-            padding: 18px 22px;
+            padding: 22px 26px;
             box-shadow: var(--shadow);
             transition: box-shadow 0.2s, border-color 0.2s;
             position: relative;
-            border-left: 3px solid #000;
+            border-left: 4px solid #000;
         }
         .card:hover {
             box-shadow: var(--shadow-lg);
@@ -310,129 +313,171 @@
         }
         .card .q {
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 1.2rem;
             color: #000;
-            margin-bottom: 6px;
+            margin-bottom: 10px;
         }
         .card .a {
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
 
         /* ── LONG BLOCKS ── */
         .long-block {
             background: #fff;
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             border-radius: var(--radius-lg);
-            padding: 26px 28px 22px;
-            margin-bottom: 18px;
+            padding: 32px 30px 28px;
+            margin-bottom: 24px;
             box-shadow: var(--shadow);
             position: relative;
-            border-top: 3px solid #000;
+            border-top: 4px solid #000;
         }
         .long-block .number {
             position: absolute;
-            top: -16px;
-            left: 22px;
+            top: -20px;
+            left: 24px;
             background: #000;
             color: #fff;
-            width: 34px;
-            height: 34px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 1.2rem;
             font-family: 'Georgia', serif;
         }
         .long-block .q {
-            font-size: 1.05rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: #000;
-            margin-bottom: 4px;
-            margin-top: 8px;
+            margin-bottom: 8px;
+            margin-top: 10px;
         }
         .long-block .instruction {
             display: inline-block;
             background: #f0f0f0;
             color: #4a4a4a;
-            font-size: 0.75rem;
-            padding: 4px 14px;
-            border-radius: 20px;
-            margin-bottom: 12px;
+            font-size: 0.95rem;
+            padding: 6px 18px;
+            border-radius: 22px;
+            margin-bottom: 16px;
             letter-spacing: 0.3px;
             border: 1px solid #ddd;
         }
         .long-block .a {
             color: var(--text-muted);
-            line-height: 1.8;
-            font-size: 0.92rem;
+            line-height: 2;
+            font-size: 1.15rem;
         }
 
         /* ── FOOTER NOTE ── */
         .footer-note {
             text-align: center;
-            margin-top: 50px;
-            font-size: 0.75rem;
+            margin-top: 60px;
+            font-size: 1rem;
             color: #bbb;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
         }
 
         /* ── DESIGNER CREDIT ── */
         .designer-credit {
             text-align: center;
-            margin-top: 40px;
-            padding: 24px 20px;
-            border-top: 1px solid #e0e0e0;
+            margin-top: 50px;
+            padding: 30px 20px;
+            border-top: 2px solid #e0e0e0;
         }
         .designer-credit .credit-label {
-            font-size: 0.65rem;
-            letter-spacing: 3px;
+            font-size: 0.9rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
             color: #bbb;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
         .designer-credit .credit-name {
             font-family: 'Georgia', serif;
-            font-size: 1rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: #000;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
         .designer-credit .credit-class {
-            font-size: 0.8rem;
+            font-size: 1.1rem;
             color: var(--text-muted);
-            margin-top: 2px;
+            margin-top: 4px;
         }
 
         /* ── RESPONSIVE ── */
         @media (max-width: 600px) {
+            html {
+                font-size: 18px;
+            }
             .hero-content h1 {
-                font-size: 2.4rem;
-                letter-spacing: 1px;
+                font-size: 3rem;
+                letter-spacing: 2px;
             }
             .hero-content .hero-subtitle {
-                font-size: 0.75rem;
-                letter-spacing: 3px;
+                font-size: 1rem;
+                letter-spacing: 4px;
+            }
+            .hero-content .hero-icon {
+                font-size: 3.5rem;
+            }
+            .scroll-indicator {
+                bottom: 120px;
+            }
+            .scroll-indicator span {
+                font-size: 1.1rem;
+            }
+            .scroll-indicator .arrow {
+                font-size: 2.5rem;
             }
             .qa-header h2 {
-                font-size: 1.6rem;
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .section-title .num {
+                width: 44px;
+                height: 44px;
+                font-size: 1.1rem;
             }
             .long-block {
-                padding: 20px 16px 16px;
+                padding: 24px 18px 20px;
             }
             .long-block .number {
-                width: 28px;
-                height: 28px;
-                font-size: 0.75rem;
-                top: -12px;
-                left: 14px;
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+                top: -16px;
+                left: 16px;
+            }
+            .long-block .q {
+                font-size: 1.25rem;
+            }
+            .long-block .a {
+                font-size: 1.05rem;
             }
             tbody td {
-                padding: 10px 12px;
-                font-size: 0.8rem;
+                padding: 14px 16px;
+                font-size: 1rem;
+            }
+            tbody td:last-child {
+                font-size: 1.05rem;
+            }
+            .card .q {
+                font-size: 1.1rem;
+            }
+            .card .a {
+                font-size: 1rem;
+            }
+            .designer-credit .credit-name {
+                font-size: 1.3rem;
             }
         }
     </style>
