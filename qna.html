@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Death by Scrabble - Q&A</title>
+    <style>
+        :root {
+            --border: rgba(0, 0, 0, 0.2);
+            --text: #000000;
+            --text-muted: #333333;
+            --text-light: #555555;
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
+            --radius: 10px;
+            --radius-lg: 14px;
+            --glass-bg: rgba(255, 255, 255, 0.45);
+            --glass-bg-hover: rgba(255, 255, 255, 0.60);
+            --glass-border: rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 22px;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', 'Segoe UI', serif;
+            line-height: 1.8;
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+            min-height: 100vh;
+            background: #0a0a0a;
+        }
+
+        /* ══════════════════════════════════════ */
+        /*  VIDEO BACKGROUND                     */
+        /* ══════════════════════════════════════ */
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* ══════════════════════════════════════ */
+        /*  HOME BUTTON                          */
+        /* ══════════════════════════════════════ */
+        .home-btn {
+            position: fixed;
+            top: 18px;
+            left: 18px;
+            z-index: 10;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            text-decoration: none;
+        }
+        .home-btn:hover {
+            background: var(--glass-bg-hover);
+            border-color: rgba(0, 0, 0, 0.4);
+            transform: scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+        .home-btn:active {
+            transform: scale(0.95);
+        }
+        .home-btn img {
+            width: 30px;
+            height: 30px;
+            display: block;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 16px 28px 70px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── Q&A HEADER ── */
+        .qa-header {
+            text-align: center;
+            margin-bottom: 36px;
+            padding: 10px 20px 16px;
+        }
+        .qa-header .icon {
+            font-size: 3.5rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .qa-header h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #000;
+            margin-bottom: 4px;
+            font-family: 'Georgia', serif;
+        }
+        .qa-header .line {
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: #000;
+            margin: 12px auto 0;
+        }
+        .qa-header .subtitle {
+            font-size: 1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-top: 6px;
+            font-weight: 700;
+        }
+
+        /* ── SECTION TITLES ── */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 34px 0 16px;
+            font-family: 'Georgia', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #000;
+            letter-spacing: 0.5px;
+        }
+        .section-title .num {
+            width: 44px;
+            height: 44px;
+            border: 2px solid rgba(0, 0, 0, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: #000;
+        }
+        .section-title .line {
+            flex: 1;
+            height: 1px;
+            background: rgba(0, 0, 0, 0.2);
+            margin-left: 8px;
+        }
+
+        /* ── TABLE ── */
+        .table-wrapper {
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        thead th {
+            background: rgba(255, 255, 255, 0.35);
+            padding: 14px 20px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #000;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+        }
+        tbody td {
+            padding: 14px 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 1.05rem;
+            color: var(--text-muted);
+        }
+        tbody tr:hover {
+            background: var(--glass-bg-hover);
+        }
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+        tbody td:first-child {
+            color: #000;
+            font-weight: 600;
+        }
+        tbody td:last-child {
+            font-weight: 700;
+            color: #000;
+            font-size: 1.15rem;
+        }
+
+        /* ── CARDS ── */
+        .cards-grid {
+            display: grid;
+            gap: 14px;
+        }
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 18px 22px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            border-left: 3px solid rgba(0, 0, 0, 0.5);
+        }
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+            background: var(--glass-bg-hover);
+            border-color: rgba(0, 0, 0, 0.3);
+            border-left-color: #000;
+        }
+        .card .q {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: #000;
+            margin-bottom: 8px;
+        }
+        .card .a {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* ── LONG BLOCKS ── */
+        .long-block {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 22px 26px 24px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+            border-top: 3px solid rgba(0, 0, 0, 0.5);
+        }
+        .long-block:hover {
+            box-shadow: var(--shadow-lg);
+            background: var(--glass-bg-hover);
+            border-top-color: #000;
+        }
+        .long-block .q {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 6px;
+        }
+        .long-block .instruction {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.45);
+            color: #000;
+            font-size: 0.9rem;
+            padding: 5px 16px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+            letter-spacing: 0.3px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            font-weight: 600;
+        }
+        .long-block .a {
+            color: var(--text-muted);
+            line-height: 1.9;
+            font-size: 1.1rem;
+        }
+
+        /* ── FOOTER NOTE ── */
+        .footer-note {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.95rem;
+            color: rgba(0, 0, 0, 0.5);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        /* ── DESIGNER CREDIT ── */
+        .designer-credit {
+            text-align: center;
+            margin-top: 40px;
+            padding: 24px 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.2);
+        }
+        .designer-credit .credit-label {
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(0, 0, 0, 0.5);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .designer-credit .credit-name {
+            font-family: 'Georgia', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #000;
+            letter-spacing: 2px;
+        }
+        .designer-credit .credit-class {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 600px) {
+            html {
+                font-size: 18px;
+            }
+            .home-btn {
+                top: 12px;
+                left: 12px;
+                width: 48px;
+                height: 48px;
+            }
+            .home-btn img {
+                width: 26px;
+                height: 26px;
+            }
+            .container {
+                padding: 12px 16px 60px;
+            }
+            .qa-header h2 {
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 1.4rem;
+            }
+            .section-title .num {
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
+            }
+            .long-block {
+                padding: 20px 16px 18px;
+            }
+            .long-block .q {
+                font-size: 1.2rem;
+            }
+            .long-block .a {
+                font-size: 1rem;
+            }
+            tbody td {
+                padding: 12px 14px;
+                font-size: 0.95rem;
+            }
+            tbody td:last-child {
+                font-size: 1rem;
+            }
+            .card .q {
+                font-size: 1.05rem;
+            }
+            .card .a {
+                font-size: 0.95rem;
+            }
+            .designer-credit .credit-name {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ══════════════════════════════════════ -->
+    <!--  VIDEO BACKGROUND                     -->
+    <!-- ══════════════════════════════════════ -->
+    <video class="bg-video" autoplay muted loop playsinline>
+        <source src="snow.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- ══════════════════════════════════════ -->
+    <!--  HOME BUTTON                          -->
+    <!-- ══════════════════════════════════════ -->
+    <a href="index.html" class="home-btn" title="Home">
+        <img src="home.png" alt="Home">
+    </a>
+
+    <!-- ══════════════════════════════════════ -->
+    <!--  Q&A CONTENT                         -->
+    <!-- ══════════════════════════════════════ -->
+    <div class="container">
+
+        <!-- Q&A Header -->
+        <div class="qa-header">
+            <span class="icon">◈</span>
+            <h2>Question &amp; Answer</h2>
+            <div class="line"></div>
+            <p class="subtitle">Complete Study Guide</p>
+        </div>
+
+        <!-- ═══════════ SECTION 1 : ONE WORD ═══════════ -->
+        <div class="section-title">
+            <span class="num">1</span> One Word Questions
+            <span class="line"></span>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Answer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>First word played by the wife?</td><td>JINX</td></tr>
+                    <tr><td>What does the narrator blame his wife for?</td><td>Unfulfillment / Boredom</td></tr>
+                    <tr><td>What fate does he wish upon her?</td><td>Death</td></tr>
+                    <tr><td>Initial feeling towards his wife?</td><td>Hatred</td></tr>
+                    <tr><td>Narrator's habit while playing?</td><td>Chewing his tiles</td></tr>
+                    <tr><td>How does he cheat?</td><td>Palming / Swapping</td></tr>
+                    <tr><td>Figure of speech at the ending?</td><td>Irony</td></tr>
+                    <tr><td>Wife's demeanor?</td><td>Placid / Calm</td></tr>
+                    <tr><td>Central theme?</td><td>Resentment / Fate</td></tr>
+                    <tr><td>Figure of speech in the title?</td><td>Hyperbole / Irony</td></tr>
+                    <tr><td>Common relationship problem?</td><td>Miscommunication</td></tr>
+                    <tr><td>Narrative style?</td><td>First-person</td></tr>
+                    <tr><td>Tone of the story?</td><td>Sinister / Dark</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ═══════════ SECTION 2 : COMMENTARY ═══════════ -->
+        <div class="section-title">
+            <span class="num">2</span> Commentary on Statements
+            <span class="line"></span>
+        </div>
+        <div class="cards-grid">
+            <div class="card">
+                <p class="q">"I hope that they are bees they fly into wifes throat"</p>
+                <p class="a">Illustrates the narrator's malicious intent and the transition of his thoughts from mere annoyance to lethal fantasy.</p>
+            </div>
+            <div class="card">
+                <p class="q">"i gasp with surprise and the B that i was chewing on gets lodges i my throat"</p>
+                <p class="a">Represents the poetic irony of the story, where the narrator's own habit and the word he played lead to his own demise.</p>
+            </div>
+        </div>
+
+        <!-- ═══════════ SECTION 3 : SHORT Q&A ═══════════ -->
+        <div class="section-title">
+            <span class="num">3</span> Short Question Answers
+            <span class="line"></span>
+        </div>
+        <div class="cards-grid">
+            <div class="card">
+                <p class="q">What does the narrator wish to do instead of playing Scrabble?</p>
+                <p class="a">The narrator expresses a desire to do something more exciting or violent, specifically mentioning he would rather be "climbing a mountain" or "kicking a hole in a radiator."</p>
+            </div>
+            <div class="card">
+                <p class="q">How does the narrator hope to use the game piece to harm his wife?</p>
+                <p class="a">He wishes he could use the physical tiles as weapons, specifically imagining "throwing the 'L' at her" or having the letters manifest as physical objects (like bees) to attack her.</p>
+            </div>
+            <div class="card">
+                <p class="q">What is ironic about the story's ending?</p>
+                <p class="a">The irony lies in the fact that the narrator spends the entire game plotting his wife's death through the "magic" of the words, only to be killed by the very word he played and his own habit of chewing on the tiles.</p>
+            </div>
+            <div class="card">
+                <p class="q">What happens when the narrator plays the word "QUAKE"?</p>
+                <p class="a">As soon as the word is played, a literal earthquake occurs, shaking the room and proving that the words played on the board are becoming reality.</p>
+            </div>
+            <div class="card">
+                <p class="q">What makes the narrator petty and vindictive?</p>
+                <p class="a">He is defined by his intense hatred for his wife over minor inconveniences, his internal insults regarding her appearance, and his willingness to cheat and wish for her death just because he is bored.</p>
+            </div>
+            <div class="card">
+                <p class="q">What does the story suggest about the concept of karma?</p>
+                <p class="a">The story suggests that karma is swift and literal; the narrator's murderous intentions and his cheating ultimately "turn" on him, ensuring that the death he designed for his wife becomes his own fate.</p>
+            </div>
+        </div>
+
+        <!-- ═══════════ SECTION 4 : LONG Q&A ═══════════ -->
+        <div class="section-title">
+            <span class="num">4</span> Long Question Answers
+            <span class="line"></span>
+        </div>
+
+        <div class="long-block">
+            <p class="q">What does the narrator resent his wife for?</p>
+            <span class="instruction">Blame for unfulfilling life, internal monologue, Scrabble as outlet</span>
+            <p class="a">
+                The narrator resents his wife because he views her as the primary cause of his unfulfilling and stagnant life. Through his bitter internal monologue, he describes her as a person whose very existence — her movements, her silence, and even the way she drinks tea — infuriates him. He blames her for the "safe," boring life they lead, which he feels is a prison. He uses the game of Scrabble to vent this resentment, mentally insulting her as he picks his tiles. His hatred is so deep that he begins to use the game as a vessel for his murderous wishes, hoping that the words he plays will somehow manifest into a way to eliminate her and escape his misery.
+            </p>
+        </div>
+
+        <div class="long-block">
+            <p class="q">How does the setting reflect the mood and narrative of Death by Scrabble?</p>
+            <span class="instruction">Shifting atmosphere, heat as rising anger, death inside a home</span>
+            <p class="a">
+                The setting is crucial in reflecting the narrator's deteriorating mental state. The oppressive heat of the Sunday afternoon serves as a physical symbol of his rising anger and frustration; as the temperature climbs, so does his blood pressure and his urge to kill. The atmosphere is thick with physical discomfort, making the silence of the marriage feel heavy and tense rather than peaceful. Most notably, the story subverts the traditional idea of "home." Instead of being a safe, comforting place, the domestic setting becomes a claustrophobic trap where the narrative driving force is not love, but death. The shift from a quiet afternoon to a scene of literal supernatural disaster mirrors the narrator's internal shift from silent resentment to active, lethal intent.
+            </p>
+        </div>
+
+        <div class="long-block">
+            <p class="q">What makes the narrator believe that the Scrabble words are coming to life, and how does he test this out?</p>
+            <span class="instruction">Consequences of words played, testing with "FLY"</span>
+            <p class="a">
+                The narrator begins to believe the game is supernatural when he notices a direct correlation between the consequences of the words played and reality. For example, when the word "EXPLODES" is played, the air conditioning unit fails with a loud bang. He becomes pleased and exhilarated by this discovery, realizing he might have a magical weapon against his wife. To test this theory out, he intentionally plays the word FLY. Almost immediately, an insect begins to buzz around the room, confirming his suspicion. This empowers him to play even more dangerous words like "QUAKE," leading him to believe he is in total control of her fate, unaware that the board's power applies to him as well.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <p class="footer-note">— End of Question Bank —</p>
+
+        <!-- ═══════════ DESIGNER CREDIT ═══════════ -->
+        <div class="designer-credit">
+            <p class="credit-label">Website Designed by</p>
+            <p class="credit-name">IBADUR RAHMAN SIDDIQUI</p>
+            <p class="credit-class">12G</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
